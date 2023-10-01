@@ -6,4 +6,5 @@ Flask-RESTful
 Flask-SQLAlchemy
 SQLAlchemy
 SQLAlchemy-serializer
-
+psycopg2-binary
+gunicorn
