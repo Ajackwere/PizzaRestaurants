@@ -15,8 +15,7 @@ class Restaurant(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    pizzas = db.relationship(
-        'Pizza', secondary='restaurant_pizzas', backref='restaurants')
+    restaurant_pizzas = db.relationship('Restaurant_pizzas', backref='restaurant')
 
     def __repr__(self):
         return f'<Restaurant {self.name}>'
@@ -33,7 +32,7 @@ class Pizza(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     restaurants_pizzas = db.relationship(
-        'RestaurantPizza', secondary='restaurant_pizzas', backref='pizza')
+        'Restaurant_pizzas', backref='pizza')
 
     def __repr__(self):
         return f'<Pizza {self.name}>'
@@ -58,10 +57,10 @@ class RestaurantPizza(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    restaurant = db.relationship('Restaurant', backref=db.backref(
-        'restaurant_pizzas', cascade='all, delete-orphan'))
-    pizza = db.relationship('Pizza', backref=db.backref(
-        'restaurant_pizzas', cascade='all, delete-orphan'))
+    # restaurant = db.relationship('Restaurant', backref=db.backref(
+    #     'restaurant_pizzas', cascade='all, delete-orphan'))
+    # pizza = db.relationship('Pizza', backref=db.backref(
+    #     'restaurant_pizzas', cascade='all, delete-orphan'))
 
     def __repr__(self):
         return f'<RestaurantPizza {self.id}>'

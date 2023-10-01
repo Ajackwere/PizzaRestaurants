@@ -66,7 +66,7 @@ class RestaurantPizzasResource(Resource):
         pizza_id = args['pizza_id']
         restaurant_id = args['restaurant_id']
 
-        # code to validate the data and create RestayrantPizza
+        # code to validate the data and create RestaurantPizza
 
         if price is not None and 1 <= price <= 30:
             restaurant_pizza = RestaurantPizza(
