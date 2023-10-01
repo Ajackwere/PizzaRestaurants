@@ -32,7 +32,7 @@ class Pizza(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    restaurants = db.relationship(
+    restaurants_pizzas = db.relationship(
         'Restaurant', secondary='restaurant_pizzas', backref='pizzas')
 
     def __repr__(self):
