@@ -6,7 +6,7 @@ from flask_restful import Api, Resource, reqparse
 from models import db, Restaurant, Pizza, RestaurantPizza
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://austine:0ypd6XocLkp7X2mEJc6LVZlde382o9QX@dpg-cka02mtdrqvc739q0u1g-a.ohio-postgres.render.com/bird_app_14hv'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://austine:0ypd6XocLkp7X2mEJc6LVZlde382o9QX@dpg-cka02mtdrqvc739q0u1g-a.ohio-postgres.render.com/pizza_app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
@@ -48,7 +48,7 @@ class RestaurantByID(Resource):
             return jsonify({"error": "Restaurant not found"}), 404
 
 
-class PizzzasResource(Resource):
+class PizzasResource(Resource):
     def get(self):
         pizzas = Pizza.query.all()
         return jsonify([pizza.serialize() for pizza in pizzas])
@@ -86,4 +86,4 @@ api.add_resource(RestaurantPizzasResource, '/restaurant_pizzas')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
