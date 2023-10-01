@@ -1,6 +1,6 @@
 from flask import Flask, make_response, request, jsonify, abort
 from flask_migrate import Migrate
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_restful import Api, Resource, reqparse
 
 from models import db, Restaurant, Pizza, RestaurantPizza
@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://austine:0ypd6XocLkp7X2mEJc
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
-# CORS(app)
+CORS(app)
 
 migrate = Migrate(app, db)
 
