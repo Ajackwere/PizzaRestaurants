@@ -15,6 +15,9 @@ class Restaurant(db.Model, SerializerMixin):
     pizzas = db.relationship(
         'Pizza', secondary='restaurant_pizzas', backref='restaurants')
 
+    def __repr__(self):
+        return f'<Restaurant {self.name}>'
+
 
 class Pizza(db.Model):
     __tablename__ = 'pizzas'
@@ -26,6 +29,9 @@ class Pizza(db.Model):
 
     restaurants = db.relationship(
         'Restaurant', secondary='restaurant_pizzas', backref='pizzas')
+
+    def __repr__(self):
+        return f'<Pizza {self.name}>'
 
 
 class RestaurantPizza(db.Model):
@@ -44,3 +50,7 @@ class RestaurantPizza(db.Model):
         'restaurant_pizzas', cascade='all, delete-orphan'))
     pizza = db.relationship('Pizza', backref=db.backref(
         'restaurant_pizzas', cascade='all, delete-orphan'))
+    
+    def __repr__(self):
+        return f'<RestaurantPizza {self.id}>'
+    
