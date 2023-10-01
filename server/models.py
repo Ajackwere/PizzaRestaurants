@@ -15,7 +15,17 @@ class Restaurant(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    restaurant_pizzas = db.relationship('Restaurant_pizzas', backref='restaurant')
+    restaurant_pizzas = db.relationship('RestaurantPizza', backref='restaurant')
+
+    def serialize(self):
+        return {
+            'id' : self.id,
+            'name': self.name,
+            'address': self.address,
+            'created_at' : self.created_at,
+            'updated_at': self.updated_at
+
+        }
 
     def __repr__(self):
         return f'<Restaurant {self.name}>'
@@ -31,8 +41,18 @@ class Pizza(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    restaurants_pizzas = db.relationship(
-        'Restaurant_pizzas', backref='pizza')
+    restaurant_pizzas = db.relationship(
+        'RestaurantPizza', backref='pizza')
+    
+    def serialize(self):
+        return {
+            'id' : self.id,
+            'name': self.name,
+            'ingredients': self.ingredients,
+            'created_at' : self.created_at,
+            'updated_at': self.updated_at
+
+        }
 
     def __repr__(self):
         return f'<Pizza {self.name}>'
