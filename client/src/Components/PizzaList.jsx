@@ -10,7 +10,7 @@ export default function PizzaList() {
           .catch((error) => console.error(error));
       }, []);
       return <div>
-        <h2>List of Available Pizzas</h2>
+        <h2 className='bg-blue-300'>List of Available Pizzas</h2>
         <ul>
             {pizzas.map((pizza) => (
                 <li key={pizza.id}>{pizza.name} {pizza.ingredient}</li>

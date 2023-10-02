@@ -10,7 +10,7 @@ export default function RestaurantList() {
       .catch((error) => console.error(error));
   }, []);
   return <div>
-    <h2>List of Restaurants</h2>
+    <h2 className="bg-red-300">List of Restaurants</h2>
     <ul>
         {restaurants.map((restaurant) => (
             <li key={restaurant.id}>{restaurant.name} {restaurant.address}</li>
