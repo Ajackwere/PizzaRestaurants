@@ -1,34 +1,13 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
-import { getRestaurants } from "./services/apicalls";
+import PizzaList from "./Components/PizzaList";
+import RestaurantList from "./Components/RestaurantList";
 
 function App() {
-  const [restaurants, setRestaurants] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      return await getRestaurants();
-    }
-    fetchData();
-    //setRestaurants(restaurants$)
-    debugger;
-  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <h1>Pizza App</h1>
+      <RestaurantList/>
+      <PizzaList/>
     </div>
   );
 }
